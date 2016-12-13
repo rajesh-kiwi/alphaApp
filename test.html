@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	</head>
+	<body>
+		<div ng-app="myApp" ng-controller="myCtrl">
+			<iframe id="local-video-iframe" width="420" height="345" src=""></iframe>
+			<div ng-repeat="video in videosList">
+				<span ng-click='setVideoUrl(video.url.replace("watch?v=", "v/"))'>{{video.url}}</span>
+			</div>
+		</div>
+		<script>
+			var app = angular.module('myApp', []);
+			app.controller('myCtrl', function($scope) {
+				$scope.playVideoUrl = "";
+			    $scope.videosList = [
+			    	{url: "https://www.youtube.com/embed/XGSy3_Czz8k"},
+			    	{url: "https://www.youtube.com/watch?v=vLPgScAbBMk"},
+			    ];
+			    $scope.setVideoUrl = function(url) {
+			    	$scope.playVideoUrl = url;
+			    	$("#local-video-iframe").attr("src", url);
+			    }
+			});
+		</script>
+	</body>
+</html>
